@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:geo_positioning_app/GeoFence.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -73,7 +74,16 @@ class Home extends StatelessWidget {
               context,
               MainAxisAlignment.center,
               EdgeInsets.only(top: buttonGap),
-              geoFenceButtonPressed,
+              (){
+                    Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context){
+                        return GeoFence();
+                      }
+                    )
+                  );
+              },
               'GeoFence',
             ),
             createButtonRow(
@@ -206,7 +216,6 @@ class Home extends StatelessWidget {
     return textBoxWidgets;
   }
 
-  void geoFenceButtonPressed() {}
 
   void settingsButtonPressed() {}
 
