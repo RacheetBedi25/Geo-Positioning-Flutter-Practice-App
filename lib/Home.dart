@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:geo_positioning_app/GeoFence.dart';
+import 'package:geo_positioning_app/More.dart';
+import 'package:geo_positioning_app/MyLocation.dart';
+import 'package:geo_positioning_app/Settings.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -67,13 +70,25 @@ class Home extends StatelessWidget {
               context,
               MainAxisAlignment.center,
               EdgeInsets.only(top: topGap),
-              myLocationButtonPressed,
+
+              (){
+                    Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context){
+                        return MyLocation();
+                      }
+                    )
+                  );
+              },
+
               'My Location',
             ),
             createButtonRow(
               context,
               MainAxisAlignment.center,
               EdgeInsets.only(top: buttonGap),
+
               (){
                     Navigator.push(
                     context, 
@@ -84,20 +99,43 @@ class Home extends StatelessWidget {
                     )
                   );
               },
+
               'GeoFence',
             ),
             createButtonRow(
               context,
               MainAxisAlignment.center,
               EdgeInsets.only(top: buttonGap),
-              settingsButtonPressed,
+
+              (){
+                    Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context){
+                        return Settings();
+                      }
+                    )
+                  );
+              },
+
               'Settings',
             ),
             createButtonRow(
               context,
               MainAxisAlignment.center,
               EdgeInsets.only(top: buttonGap),
-              moreButtonPressed,
+
+              (){
+                    Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context){
+                        return More();
+                      }
+                    )
+                  );
+              },
+
               'More',
             ),
           ],
@@ -215,9 +253,6 @@ class Home extends StatelessWidget {
 
     return textBoxWidgets;
   }
-
-
-  void settingsButtonPressed() {}
 
   void moreButtonPressed() {}
 
