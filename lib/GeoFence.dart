@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 class GeoFence extends StatelessWidget{
     const GeoFence({super.key});
