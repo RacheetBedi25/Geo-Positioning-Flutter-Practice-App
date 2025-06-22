@@ -19,7 +19,44 @@ class _GeoFenceState extends State<GeoFence>{
 
     late GoogleMapController mapController;
 
-    LatLng _center = LatLng(-23.5557714, -46.6395571);
+    Position? curPos;
+    @override
+    void initState(){
+        super.initState();
+        determinePosition().then((position){
+            setState(() {
+              curPos = position;
+            });
+        });
+    }
+    Future<Position> determinePosition() async{
+        bool serviceEnabled;
+        LocationPermission permission;
+        serviceEnabled = await Geolocator.isLocationServiceEnabled();
+        if (!serviceEnabled) {
+            return Future.error('Location services are disabled.');
+        }
+
+        permission = await Geolocator.checkPermission();
+        if (permission == LocationPermission.denied) {
+            permission = await Geolocator.requestPermission();
+            if (permission == LocationPermission.denied) {
+            return Future.error('Location permissions are denied');
+            }
+        }
+        
+        if (permission == LocationPermission.deniedForever) {
+            return Future.error(
+            'Location permissions are permanently denied, we cannot request permissions.');
+        } 
+
+        final LocationSettings locationSettings = LocationSettings(
+            accuracy: LocationAccuracy.high,
+            distanceFilter: 100,
+        );
+        Position position = await Geolocator.getCurrentPosition(locationSettings: locationSettings);
+        return position;
+    }
 
     void _onMapCreated(GoogleMapController controller){
         mapController = controller;
@@ -59,11 +96,12 @@ class _GeoFenceState extends State<GeoFence>{
                                 maxWidth: 300
                             ),
                             
-                            child: GoogleMap(
+                            child: curPos == null ? Center(child:CircularProgressIndicator()) :
+                                    GoogleMap(
                                     onMapCreated: _onMapCreated,
                                     initialCameraPosition: CameraPosition(
-                                        target: _center,
-                                        zoom: 11.0
+                                        target: LatLng(curPos!.latitude, curPos!.longitude),
+                                        zoom: 20.0
                                     )
                             ),
                         )
