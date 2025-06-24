@@ -126,7 +126,7 @@ class _GeoFenceState extends State<GeoFence>{
                                         EdgeInsets.only(top: 30),
                                         (){
                                           if(curPos != null){
-                                            addGeofence(LatLng(curPos!.latitude, curPos!.longitude), 10);
+                                            addGeofence(LatLng(curPos!.latitude, curPos!.longitude), 900);
                                           }
                                         },
                                         'Add GeoFence',
@@ -136,7 +136,7 @@ class _GeoFenceState extends State<GeoFence>{
                                         MainAxisAlignment.center,
                                         EdgeInsets.only(top: 20),
                                         (){
-
+                                          removeGeofence(LatLng(curPos!.latitude, curPos!.longitude));
                                         },
                                         'Remove GeoFence'
                                     ),
@@ -160,6 +160,32 @@ class _GeoFenceState extends State<GeoFence>{
         );
       });
     }
+
+    void removeGeofence(LatLng position){
+      Circle removeDesired = Circle(circleId: CircleId.new('none'));
+      for(int i = 0; i<circles.length; i++){
+        LatLng nowCur = circles.elementAt(i).center;
+        if(distanceBetween(position.latitude, position.longitude, nowCur.latitude, nowCur.longitude) <= 900){
+          removeDesired = circles.elementAt(i);
+        }
+      }
+      setState(() {
+        circles.remove(removeDesired);
+      });
+    }
+
+  static double distanceBetween(
+  double startLatitude,
+  double startLongitude,
+  double endLatitude,
+  double endLongitude,
+) =>
+    GeolocatorPlatform.instance.distanceBetween(
+      startLatitude,
+      startLongitude,
+      endLatitude,
+      endLongitude,
+    );
 
     Row createButtonRow(
     BuildContext context,
