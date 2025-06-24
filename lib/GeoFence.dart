@@ -14,6 +14,9 @@ class GeoFence extends StatefulWidget{
 
 class _GeoFenceState extends State<GeoFence>{
 
+  Set<Circle> circles = {};
+  int numCreated = 0;
+
     final double topGap = 170.0;
     final double buttonGap = 40.0;
 
@@ -102,7 +105,8 @@ class _GeoFenceState extends State<GeoFence>{
                                     initialCameraPosition: CameraPosition(
                                         target: LatLng(curPos!.latitude, curPos!.longitude),
                                         zoom: 20.0
-                                    )
+                                    ),
+                                    circles: circles,
                             ),
                         )
                     ),
@@ -121,7 +125,9 @@ class _GeoFenceState extends State<GeoFence>{
                                         MainAxisAlignment.center,
                                         EdgeInsets.only(top: 30),
                                         (){
-
+                                          if(curPos != null){
+                                            addGeofence(LatLng(curPos!.latitude, curPos!.longitude), 10);
+                                          }
                                         },
                                         'Add GeoFence',
                                     ),
@@ -141,6 +147,18 @@ class _GeoFenceState extends State<GeoFence>{
                 ]
             ),
         );
+    }
+
+    void addGeofence(LatLng position, double radius){
+      setState(() {
+        circles.add(
+          Circle(
+            circleId: CircleId.new('GeoFence $numCreated'),
+            center: position,
+            radius: radius,
+          ),
+        );
+      });
     }
 
     Row createButtonRow(
