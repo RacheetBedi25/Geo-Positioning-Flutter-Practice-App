@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.geo_positioning_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973" // got rid of 'flutter.ndkVersion' because it told me too fsr
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Infobutton extends StatelessWidget {
+  const Infobutton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -57,10 +59,7 @@ class Infobutton extends StatelessWidget {
     Container para1 = Container(
       margin: EdgeInsets.symmetric(vertical: verticalMargin),
       child: Text(
-        "Lalalalala info info info.\n" +
-            "Here's an example on how to use the app!\n" +
-            "This app is really cool.\n" +
-            "roblox (robocop)",
+        "Lalalalala info info info.\n" "Here's an example on how to use the app!\n" "This app is really cool.\n" "roblox (robocop)",
       ),
     );
 
@@ -74,10 +73,7 @@ class Infobutton extends StatelessWidget {
     Container para2 = Container(
       margin: EdgeInsets.symmetric(vertical: verticalMargin),
       child: Text(
-        'Roblox lmao' +
-            'wwdwadwdawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaads' +
-            'wasdwarwwwwdwadwdawaddwaadswwdwadwdawaddwaadsdwadwdawaddwaadswwdwadw' +
-            'dawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadsdawsdw' +
+        'Roblox lmao' 'wwdwadwdawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaads' 'wasdwarwwwwdwadwdawaddwaadswwdwadwdawaddwaadsdwadwdawaddwaadswwdwadw' 'dawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadsdawsdw' +
             'dawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadsdawsdw' +
             'dawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadsdawsdw' +
             'dawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadsdawsdw' +

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:geo_positioning_app/GeoFence.dart';
 import 'package:geo_positioning_app/InfoButton.dart';
 import 'package:geo_positioning_app/More.dart';
 import 'package:geo_positioning_app/MyLocation.dart';
+import 'package:geo_positioning_app/RowButton.dart';
 import 'package:geo_positioning_app/Settings.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  Home({super.key, required this.screenSize});
 
-  final double topGap = 170.0;
-  final double buttonGap = 40.0;
+  final Size screenSize;
+
+  late final double topGap = screenSize.height * 0.22; // percent of height
+  late final double buttonGap = screenSize.width * 0.10; // percent of width
 
   @override
   Widget build(BuildContext context) {
@@ -25,77 +27,33 @@ class Home extends StatelessWidget {
         ),
         child: Column(
           children: [
-            createButtonRow(
-              context,
-              MainAxisAlignment.center,
-              EdgeInsets.only(top: topGap),
-
-              () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return MyLocation();
-                    },
-                  ),
-                );
-              },
-
-              'My Location',
+            RowButton(
+              mainAlignment: MainAxisAlignment.center,
+              margin: EdgeInsets.only(top: topGap),
+              width: 250.0,
+              onPressed: goToPage(context, MyLocation()),
+              text: 'My Location',
             ),
-            createButtonRow(
-              context,
-              MainAxisAlignment.center,
-              EdgeInsets.only(top: buttonGap),
-
-              () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return GeoFence();
-                    },
-                  ),
-                );
-              },
-
-              'GeoFence',
+            RowButton(
+              mainAlignment: MainAxisAlignment.center,
+              margin: EdgeInsets.only(top: buttonGap),
+              width: 250.0,
+              onPressed: goToPage(context, GeoFence()),
+              text: 'GeoFence',
             ),
-            createButtonRow(
-              context,
-              MainAxisAlignment.center,
-              EdgeInsets.only(top: buttonGap),
-
-              () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Settings();
-                    },
-                  ),
-                );
-              },
-
-              'Settings',
+            RowButton(
+              mainAlignment: MainAxisAlignment.center,
+              margin: EdgeInsets.only(top: buttonGap),
+              width: 250.0,
+              onPressed: goToPage(context, Settings()),
+              text: 'Settings',
             ),
-            createButtonRow(
-              context,
-              MainAxisAlignment.center,
-              EdgeInsets.only(top: buttonGap),
-
-              () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return More();
-                    },
-                  ),
-                );
-              },
-
-              'More',
+            RowButton(
+              mainAlignment: MainAxisAlignment.center,
+              margin: EdgeInsets.only(top: buttonGap),
+              width: 250.0,
+              onPressed: goToPage(context, More()),
+              text: 'More',
             ),
           ],
         ),
@@ -105,6 +63,7 @@ class Home extends StatelessWidget {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
+      // toolbarHeight: screenSize.height * 0.0,
       backgroundColor: Theme.of(context).colorScheme.primary,
       title: Column(
         children: [
@@ -141,36 +100,16 @@ class Home extends StatelessWidget {
     );
   }
 
-  Row createButtonRow(
-    BuildContext context,
-    MainAxisAlignment mainAlignment,
-    EdgeInsets margin,
-    VoidCallback onPressed,
-    String text,
-  ) {
-    return Row(
-      mainAxisAlignment: mainAlignment,
-      children: [
-        Container(
-          margin: margin,
-          width: 250,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).primaryColor,
-              foregroundColor: Theme.of(context).primaryColorLight,
-            ),
-            onPressed: onPressed,
-            child: Text(
-              text,
-              style: TextStyle(fontFamily: 'PlayfairDisplay', fontSize: 25),
-            ),
-          ),
+  VoidCallback goToPage(BuildContext context, Widget page) {
+    return () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return page;
+          },
         ),
-      ],
-    );
+      );
+    };
   }
-
-  void moreButtonPressed() {}
-
-  void myLocationButtonPressed() {}
 }
