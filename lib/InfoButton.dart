@@ -73,8 +73,7 @@ class Infobutton extends StatelessWidget {
     Container para2 = Container(
       margin: EdgeInsets.symmetric(vertical: verticalMargin),
       child: Text(
-        'Roblox lmao' 'wwdwadwdawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaads' 'wasdwarwwwwdwadwdawaddwaadswwdwadwdawaddwaadsdwadwdawaddwaadswwdwadw' 'dawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadsdawsdw' +
-            'dawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadsdawsdw' +
+        'Roblox lmao' 'wwdwadwdawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaads' 'wasdwarwwwwdwadwdawaddwaadswwdwadwdawaddwaadsdwadwdawaddwaadswwdwadw' 'dawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadsdawsdw' 'dawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadsdawsdw' +
             'dawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadsdawsdw' +
             'dawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadsdawsdw' +
             'dawaddwaadswwdwadwdawaddwaadswwdwadwdawaddwaadsdawsdw' +
